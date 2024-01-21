@@ -1,0 +1,384 @@
+/*                  *** Estrutura ***
+
+        É importante que já no inicio do projeto façamos as configurações que serão padrão a todo o site
+    em css, tais como, configurar variáveis globais, margens, tamanho das views port.
+    Podemos/devemos separar o conteúdo do css em varios arquivos para não precisar ficar rolando muito a página para configurar o site.
+
+*/
+
+/*     
+        Essa classe tem as divs intro-text-content e intro-img como filhas.
+    Seria para separar o conteúdo em duas colunas, uma com o texto e outra com a imagem.
+    !Important - A grid precisa ter o tamanho total da tela, ou seja da view port para que os elementos se alinhem exatamente ao centro da view port.
+
+*/
+.intro-content {
+    position: relative;
+    /* Faz parte do alinhamento superior do conteúdo */
+    /* top: -5rem; Quando ativado altera a altura do elemento, no exemplo primeiro esta desativado.*/
+    /* Faz parte do alinhamento superior do conteúdo */
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    /* Um lado da grid é maior que o outro lado */
+    gap: var(--gap);
+    /* Espaçamento  */
+    min-height: 100vh;
+    /* Tamanho da grid de 100% do vh, importante para o correto alinhamento dos elementos. */
+}
+
+/*                  *** Alinhando os elemtos ao meio da tela
+        Aqui estamos dentro da coluna da grid, utilizaremos o display-flex para alinhar os elementos que estão dentro dessa coluna.
+*/
+
+.intro-text-content,
+.intro-img {
+    display: flex;
+    flex-flow: column wrap;
+    /* Direcionamento/fluxo dos elementos dentro da div */
+    justify-content: center;
+}
+
+/*                  *** Ajuste da imagem***
+
+        Aqui iremos ajustar a imagem ao site.
+*/
+.intro-img img,
+.intro-img svg {
+    max-width: 100%;
+    /* 100% do elemento pai da imagem */
+    height: auto;
+}
+
+/*                  *** Ajuste da segunda seção do site***
+        * Ajuste para display-flex;
+        * Flow da página;
+*/
+.top3-content {
+    max-width: 64rem;
+    display: flex; 
+    /* flex-flow: wrap; */
+    flex-direction: column;
+    flex-wrap: nowrap; /* Não permite que a coluna se quebre */
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/*                  *** Ajuste da terceira grid***
+
+
+*/
+
+/* Essa é a grid principal, a grid maior, a pai de todas. */
+.grid-one-content {
+    display: flex; 
+    flex-flow: column wrap;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* 
+        Ajuste do h2 da grid content geral
+    Para isso criamos uma  classe no h2 para ajustar a posição.
+*/
+
+.grid-main-heading {
+    margin-bottom: 1rem;
+}
+
+/* Para ajustar o parágrafo usamos também uma classe para o p
+
+*/
+
+.grid-description {
+    padding-bottom: 5rem;
+}
+
+/* Essa é a grid interna, com os articles e parágrafos
+
+*/
+
+.grid {
+    display: grid;/* Define display flex para o elemento. */
+    grid-template-columns: repeat(3, 1fr); /* Define a quantidade de grids e o tamanho delas. */
+    gap: var(--gap);
+    counter-reset: grid-counter;/* Aqui criamos um contador para a página */
+}
+
+/* Aqui definimos ajustes para o h3
+
+*/
+
+.grid h3 {
+    font-size: 3rem;
+    position: relative; /* Utilizamos o relative para conseguir segurar o contador dentro
+                            do container*/
+    padding-left: 5rem;
+    padding-bottom: 2rem;
+}
+
+/* Aqui criamos um contador para a página, utilizando o counter-reset: grid-counter;
+
+    Ele básicamente conta os elementos e adiciona o número de ocorrencias antes do titulo.
+
+    * Aqui utilizamos pseudo-elementos.
+    * Como o número está antes do titulo usamos before.
+    * Criamos um contador com italico para a página.
+    * Definimos o h3 como display relative para posicionar o pseudo-elemento a partir dele.
+*/
+.grid h3::before {
+    counter-increment: grid-counter; 
+    content: counter(grid-counter);
+    position: absolute;
+    font-size: 8rem;
+    font-style: italic;
+    top: -4rem;
+    left: -2rem;
+    transform: rotate(5deg); /* Rotação do elemento */
+}
+
+/*
+        Ajuste da grid das imagens
+
+*/
+
+.gallery-img {
+    width: 100%; /* Laragura maxíma de 100%  */
+    /* Ambos, largura e altura maxíma terão o tamanho total da imagem */
+    max-width: 36rem; 
+    max-height: 36rem;
+    overflow: hidden; /* Usamos esse parâmetro para auxliar no efeito em que a imagem cresce. */
+}
+
+/* 
+        Efeito em que a imagem cresce
+*/
+.gallery-img img{
+    transition: all 300ms ease-in-out;
+}
+
+/* 
+        Com o transform podemos fazer varios efeitos, como torcer, escalar, transformação 2d.
+
+        * Com o scale a imagem muda de tamanho, diminui e aumenta de tamanho de acordo com o valor inserido.
+        * Rotate faz a rotação da imagem de acordo com o valor em graus inserido como parametro.
+*/
+.gallery-img img:hover{
+    /* Aqui ja temos um efeito onde a imagen se movimenta para a direita. */
+    /* transform: translate(3rem, 0); */
+    /* Com valores negativos ela anda para a direita */
+    /* transform: translate(-3rem, 0); */
+    transform: translate(-3%, 3%) scale(1.2) rotate(5deg);
+}
+
+/*                  *** Ajuste do formulário de contato ***
+            Aqui alteramos o layout da div de formulário de contato.
+*/
+
+.contact-form {
+    grid-column: span 2; /* Aqui definimos que a div contact-form irá ocupar duas colunas. */
+}
+
+.contact-form .form-grid {
+    border: none; /* Remove toda a borda do formulário */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--gap);
+}
+
+.form-grid legend {
+    font-style: italic;
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+}
+
+.form-group {
+    flex: 1 1 32rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    font-size: 3rem;
+    border: none;
+    background-color: var(--white-color);
+    padding: 1.5rem 2rem;
+    width: 100%;
+    outline: none;
+}
+
+/* Isso cria uma borda quando o input está selecionado, clicado */
+.form-group input:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 10px 2px rgb(34, 51, 4);
+}
+
+.form-group button {
+    border: 0.5rem solid var(--white-color);
+    background: none;
+    color: var(--white-color);
+    padding: 1.5rem 2rem;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+
+.form-group button:hover{
+    background: var(--white-color);
+    color: var(--primary-color);
+}
+
+.form-group ::placeholder {
+    color: var(--light-gray-color);
+}
+
+/*                  *** Ajuste do rodapé ***
+
+*/
+
+.footer {
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.footer a {
+    color: var(--primary-color);
+}
+
+.heart{
+    color: red;
+}
+
+.footer p {
+    margin: 0;
+    padding: 3rem;
+}
+
+.close-menu {
+    display: none;
+ }
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--white-color);
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: var(--primary-color);
+    transform: rotate(-90deg);
+    border: 0.1rem solid var(--primary-color);
+}
+
+/*                  *** Ajuste responsivo, Media Queries ***
+            Iremos quebrar o conteúdo do site em 800px, a partir desse tamanho será reorganizado 
+        os elementos para ficarem com layout melhor para mobile.
+*/
+
+/* Até 800px o site terá essas configurações */
+@media (max-width: 800px) {
+ .intro-content,
+ .grid{
+    grid-template-columns: 1fr;
+ }
+
+ .gallery-img {
+    width: 100%;
+    max-width: 100%;
+    max-width: 100%;
+ }
+
+ .gallery-img img {
+    width: 100%;
+ }
+
+ /* Esse comando é para solucionar um problema que aparentemente não tivemos, mas para garantir adicionamos ao estilo. */
+ .grid-one-content {
+    display: block;
+ }
+
+ /*                 *** Ajustes do menu reponsivo ***
+            Aqui iremos montar o menu de uma forma responsiva para nosso site.
+ */
+
+ .menu {
+    bottom: 0;
+    text-align: center;
+ }
+
+ .menu-content,
+ .menu-content ul {
+    flex-direction: column;
+    justify-content: center;
+ }
+
+ .menu-content {
+    height: 100vh;
+ }
+
+ /* Isso faz parte do menu responsivo. */
+ .menu {
+    display: none;
+ }
+
+
+ .close-menu-label::after {
+    content: '☰';
+    position: fixed;
+    z-index: 2;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-size: 3rem;
+    line-height: 3rem; /* Altura da linha */
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    padding: 0.5rem;
+    cursor: pointer;
+ }
+
+ /*                 *** Menu aparece/esconde ***
+ 
+ */
+
+    /*
+            Quando o close menu estiver checked, queremos que o menu tenha display block.
+
+            ×
+
+    */
+
+    .close-menu:checked~.menu {
+        display: block;
+    }
+
+    /* Quando o menu estiver marcado ele muda a imagem para um x, e quando estiver desmarcado muda para as 3 linhas. */
+    .close-menu:checked~.close-menu-label::after {
+        display: block;
+        content: '×';
+    }
+
+    .menu-spacing {
+        display: none;
+    }
+
+}
+
+@media (max-width: 799px) {
+    h2 {
+        font-size: 3rem;
+    }
+
+
+}

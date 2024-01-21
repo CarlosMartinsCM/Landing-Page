@@ -1,0 +1,57 @@
+/*                  *** CLASSES EXTRUTURAIS ***
+
+        As classes a seguir serão utilizadas em todo o site, por isso usamos inclusive variáveis globais nelas,
+    pois facilita a aplicação das regras css.
+
+        Criamos a classe main-bg, contendo a imagem de fundo, podendo ser aplicada a qualquer
+    elemento no html.
+    A seguir temos a classe que aplica a imagem de fundo svg.
+        Criamos a classe antes mesmo do elemento html a que ela será atribuida.
+*/
+
+/*                  *** Classe de background *** 
+
+*/
+.main-bg{
+    /* As configurações a seguir tornam a imagem de back reponsiva */
+    background-image: url(../img/main-bg.svg); /* Aqui adicionamos a imagem svg ao body da página. */
+    background-size: cover;
+    background-position: center center;
+    color: var(--white-color); /* Variável global para a cor white. */
+}
+
+.white-bg{
+    background-color: var(--white-color); /* Variável global para a cor white. */
+    color: var(--primary-color);
+}
+
+/* Precisamos definir os containers da página, e onde iremos colocar o conteúdo padrão. */
+
+/*                  *** MAIN ***
+
+O main-content irá sustentar o conteúdo do site. */
+.main-content{
+    max-width: 120rem;/* Aqui definimos a largura maxíma do site em 1200px */
+    margin: 0 auto;
+    padding: 10rem var(--gap); /* Aqui definimos por padrão um padding usando a variável global --gap */
+}
+
+/* 
+        Aplicamos o tamanho minimo da vh.
+    Para isso criamos uma classe para as seções do site, com as configurações
+    relativas a tamanho da vh.
+*/
+
+.section {
+    min-height: 100vh; /* Aqui definimos que todos que tiverem essa classe terá a altura minima de 100vh. */
+}
+
+.menu-spacing{
+    height: 67px;
+}
+
+/* Classe utilizada para deixar a text area ocupando 100% da largura do elemento. */
+body .full-width {
+    width: 100%;
+    flex: 1 1 100%;
+}

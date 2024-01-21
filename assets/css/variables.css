@@ -1,0 +1,12 @@
+/*                  ***Variáveis globais***
+
+        Aqui temos a criação de variáveis em css, aqui apenas criamos cores personalizadas utilizando este recurso.
+        Isso facilita para alterarmos as cores posteriormente.
+*/
+:root {
+    --primary-color: #0A1128;
+    --secondary-color: crimson;
+    --white-color: #fff;
+    --light-gray-color: #EEEEEE;
+    --gap: 3rem; /* Aqui definimos um gap padrão de 30px para os elementos */
+}

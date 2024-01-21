@@ -1,0 +1,103 @@
+/*                  *** CLASS MENU ***
+        Aqui estilizamos o menu, que está sendo extruturado dentro de um aside, que contém uma section que
+    leva a classe main-content que já tem um h1 para o titulo, e o menu de navegação contendo a lista de links.
+
+*/
+
+.menu{
+    position: fixed; /* A partir daqui ele deixa de ter o comportamento de block */
+    z-index: 1;
+    top: 0; /* Especificamos o top 0, pois ao adicionarmos algo mais na página o menu pode se movimentar. */
+    left: 0;
+    right: 0;
+    width: 100%; /* Largura de 100% da view port. */
+    border-bottom: 0.1rem solid var(--light-gray-color);
+}
+ 
+/*                  *** MENU FLEX ***
+        Aqui definimos que o menu será display-flex,
+    com space-between entre os elementos logo e a lista de links.
+
+ */
+
+/*                  *** Ajuste dos itens do menu***
+
+        Ajustes padrão para que os itens tenham display-flex, alinhamentos, e também
+    padding top e bottom zerados para que possamos utilizar o "a" como elemento que irá ajustar o tamanho
+    do height do menu, a largura, pois foi por isso que o confuguramos ele como display block.
+ 
+*/
+.menu-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinhamento dos itens ao centro na vertical. */
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/*                  *** Ajuste da Logo ***
+
+*/
+.menu h1{
+    font-size: 2.3rem;
+    color: var(--primary-color);
+}
+
+/*                  ***Ajuste da cor da logo
+
+        Aqui usamos a técnica da descendencia para aplicar a cor ao texto da logo,
+    utilizamos a propriedade 
+
+*/
+.menu h1 a{
+    color: inherit; /* Com o inherit o elemento herda a propriedade do seu pai direto, neste caso o h1 */
+}
+
+/*                  *** Ajustes da UL***
+        Aqui configuramos a lista de links.
+    Interessante que podemos definir o display-flex dentro da própria UL.
+*/
+.menu ul{
+    list-style: none;
+    display: flex;
+}
+
+/*                  *** Ajuste das Âncoras (a) ***
+        Aqui definimos display block para os links "a" para que se comportem como caixas,
+    pois assim conseguimos ajustar a ul diretamente do a.
+    Como ele está como display-block, ele empurra o menu para baixo, ajustando a largura de acordo 
+    com o tamanho do padding que for definido.
+    Definimos o a como posicion relative, para que possamos aplicar o efeito de linha de seleção.
+
+ */
+.menu ul li a{
+    display: block;
+    padding: 2rem;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    position: relative;
+}
+
+
+/*                  *** Efeito de linha nos links do menu ***
+
+        Aqui criamos uma linha vermelha logo abaixo do textos dos links.
+    Trata-se de um efeito de uma linha que deslisa do meio para as bordas dos links quando passamos o mouse 
+    encima.
+
+*/
+.menu ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: 1rem;    
+    left: 50%;
+    width: 0; /* A larura será definida no hover. */
+    height: 0.2rem;
+    background: var(--secondary-color);
+    transition: all 300ms ease-in-out;
+}
+
+.menu ul li a:hover::after {
+    width: 50%;
+    left: 25%;
+}
